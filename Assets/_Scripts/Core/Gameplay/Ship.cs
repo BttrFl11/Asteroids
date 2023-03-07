@@ -4,14 +4,14 @@ using Zenject;
 public class Ship : MonoBehaviour
 {
     private InputHandler _inputHandler;
-    private ShipData _data;
+    private ShipDataSO _data;
     private ShipMovement _movement;
 
-    public ShipData Data => _data;
+    public ShipDataSO Data => _data;
     public ShipMovement Movement => _movement;
 
     [Inject]
-    public void Construct(InputHandler inputHandler, ShipData shipData)
+    public void Construct(InputHandler inputHandler, ShipDataSO shipData)
     {
         _data = shipData;
         var fuel = new ShipFuel(Data.FuelData);
@@ -26,5 +26,10 @@ public class Ship : MonoBehaviour
     {
         _inputHandler.OnMove -= Movement.MoveForward;
         _inputHandler.OnRotate -= Movement.Rotate;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 }

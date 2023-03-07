@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] protected ProjectileData _projectileData;
-    protected ProjectileData Data => _projectileData;
+    [SerializeField] protected ProjectileDataSO _projectileData;
+    protected ProjectileDataSO Data => _projectileData;
 
     private void Update()
     {
@@ -14,5 +14,10 @@ public class Projectile : MonoBehaviour
     private void Move()
     {
         transform.Translate(Data.Speed * Time.deltaTime * transform.up, Space.World);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }

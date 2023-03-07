@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName ="SO/ProjectileData")]
-public class ProjectileData : ScriptableObject
+public class ProjectileDataSO : ScriptableObject
 {
     [SerializeField] private float _speed;
 

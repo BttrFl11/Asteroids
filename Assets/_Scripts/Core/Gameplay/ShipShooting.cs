@@ -14,7 +14,7 @@ public class ShipShooting : MonoBehaviour
     public ShipShootingData Data => _data;
 
     [Inject]
-    public void Construct(InputHandler inputHandler, ShipData shipData)
+    public void Construct(InputHandler inputHandler, ShipDataSO shipData)
     {
         _data = shipData.ShootingData;
 

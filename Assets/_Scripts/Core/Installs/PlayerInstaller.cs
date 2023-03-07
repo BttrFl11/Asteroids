@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerInstaller : MonoInstaller
 {
     [SerializeField] private Ship _shipPrefab;
-    [SerializeField] private ShipData _shipData;
+    [SerializeField] private ShipDataSO _shipData;
 
     public override void InstallBindings()
     {
@@ -14,7 +14,7 @@ public class PlayerInstaller : MonoInstaller
 
     private void BindShipData()
     {
-        Container.Bind<ShipData>().FromInstance(_shipData).AsSingle();
+        Container.Bind<ShipDataSO>().FromInstance(_shipData).AsSingle();
     }
 
     private void BindShip()

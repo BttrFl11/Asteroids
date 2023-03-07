@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/ShipData")]
-public class ShipData : ScriptableObject
+public class ShipDataSO : ScriptableObject
 {
     [SerializeField] private ShipMovementData _movementData;
     [SerializeField] private ShipFuelData _fuelData;
