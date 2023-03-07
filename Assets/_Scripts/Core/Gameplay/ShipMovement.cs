@@ -1,19 +1,21 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using System;
+using UnityEngine;
 
 public class ShipMovement
 {
     private Transform _transform;
-    private ShipFuel _tank;
+    private ShipFuel _fuel;
     private float _rotateSpeed;
     private float _moveSpeed;
 
-    private bool CanMove => !_tank.Empty;
+    private bool CanMove => !_fuel.Empty;
 
-    public ShipMovement(Transform transform, ShipFuel tank, ShipMovementData data)
+    public ShipFuel Fuel => _fuel;
+
+    public ShipMovement(Transform transform, ShipFuel fuel, ShipMovementData data)
     {
         _transform = transform;
-        _tank = tank;
+        _fuel = fuel;
         _rotateSpeed = data.RotateSpeed;
         _moveSpeed = data.MoveSpeed;
     }
@@ -26,7 +28,7 @@ public class ShipMovement
         transform.position += _moveSpeed * Time.deltaTime * transform.up;
         _transform = transform;
 
-        _tank.Expend();
+        _fuel.Expend();
     }
 
     public virtual void Rotate(float direction)
@@ -45,6 +47,11 @@ public class ShipFuel
 
     public bool Empty => _fuel <= 0;
 
+    /// <summary>
+    /// param1 - current fuel, param2 - max fuel value
+    /// </summary>
+    public event Action<float, float> OnFuelChanged;
+
     public ShipFuel(ShipFuelData data)
     {
         _maxFuel = data.MaxFuel;
@@ -57,5 +64,7 @@ public class ShipFuel
         _fuel -= _expendRate * Time.deltaTime;
         if (_fuel < 0)
             _fuel = 0;
+
+        OnFuelChanged?.Invoke(_fuel, _maxFuel);
     }
 }
