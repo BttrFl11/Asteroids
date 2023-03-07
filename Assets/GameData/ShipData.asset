@@ -16,7 +16,7 @@ MonoBehaviour:
     _moveSpeed: 2.5
     _rotateSpeed: 360
   _fuelData:
-    _maxFuel: 100
+    _maxFuel: 10
     _expendRate: 1
   _shootingData:
     _fireRate: 3

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SubAsteroid
   m_EditorClassIdentifier: 
   _movementData:
-    _moveSpeed: 1.5
-  _subAsteroidPrefab: {fileID: 2668643581722667338, guid: adb04721532164049aa38f0120369ba5, type: 3}
-  _subAsteroidsCount: 3
+    _moveSpeed: 1
+  _subAsteroidPrefab: {fileID: 0}
+  _subAsteroidsCount: 0
