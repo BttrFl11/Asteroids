@@ -14,7 +14,7 @@ public class InputHandler : MonoBehaviour, IInputHandler
 
     public void ReadInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             OnShoot?.Invoke();
 
         if (Input.GetKey(KeyCode.W))
