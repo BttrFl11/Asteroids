@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414a8d7c892e53c419776f0b93bda46d, type: 3}
+  m_Script: {fileID: 11500000, guid: efd9d8a6195a59943ab501f265202f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: 0, z: -10}
@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 979363915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e53d610fa52a345459c889f2a07dc4af, type: 3}
+  m_Script: {fileID: 11500000, guid: 850f50dd608856e4bbc5bdabf177f7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 2444927679320197141, guid: 765ad9e2f2d776b4ca7fea046e7a12d5, type: 3}
@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241b1799d5016e147b618b267321f94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shipPrefab: {fileID: 7253538705058815465, guid: 803028a966b86124eaf7b00f179de567, type: 3}
+  _shipPrefab: {fileID: -7778760220773902740, guid: 803028a966b86124eaf7b00f179de567, type: 3}
   _shipData: {fileID: 11400000, guid: ac079033c2009dd48b9d1f037aec9752, type: 2}
 --- !u!1 &1085012039
 GameObject:
@@ -1543,7 +1543,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1346709160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fddb1e25c52629a48be44e0ab3e62d84, type: 3}
+  m_Script: {fileID: 11500000, guid: cf5d56adc6842c04ca1cb2b938cb3323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 2668643581722667338, guid: 482e86033d58fa741ba8e60311be77db, type: 3}
