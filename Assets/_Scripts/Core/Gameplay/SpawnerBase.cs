@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using Zenject;
 
-public class AsteroidSpawner : Spawner
+public abstract class SpawnerBase<T> : MonoBehaviour where T : MonoBehaviour
 {
-    [SerializeField] private Asteroid _asteroidPrefab;
-    [SerializeField] private float _spawnRadius;
+    [SerializeField] protected T _prefab;
+    [SerializeField] protected float _spawnRadius;
+    [SerializeField] protected float _spawnRate;
 
-    private Transform _target;
-    private GameStateController _gameStateController;
-    private float _startTimeBtwSpawns;
-    private float _timeBtwSpawns;
-    private bool _stopSpawn;
+    protected Transform _target;
+    protected GameStateController _gameStateController;
+    protected float _startTimeBtwSpawns;
+    protected float _timeBtwSpawns;
+    protected bool _stopSpawn;
 
     [Inject]
     public void Construct(Ship ship, GameStateController stateController)
@@ -23,20 +24,20 @@ public class AsteroidSpawner : Spawner
         _gameStateController.OnPlaying += () => _stopSpawn = false;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         _gameStateController.OnIntro -= () => _stopSpawn = true;
         _gameStateController.OnGameOver -= () => _stopSpawn = true;
         _gameStateController.OnPlaying -= () => _stopSpawn = false;
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _startTimeBtwSpawns = 1 / _spawnRate;
         _timeBtwSpawns = _startTimeBtwSpawns;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (_target == null || _stopSpawn) return;
 
@@ -46,23 +47,23 @@ public class AsteroidSpawner : Spawner
             Spawn();
     }
 
-    public override void Spawn()
+    protected virtual void Spawn()
     {
-        CreateAsteroid();
+        CreatePrefab();
 
         _timeBtwSpawns = _startTimeBtwSpawns;
     }
 
-    private Vector3 GetSpawnPosition()
+    protected virtual Vector3 GetSpawnPosition()
     {
         var position = new Vector2(Random.onUnitSphere.x, Random.onUnitSphere.y).normalized * _spawnRadius;
         return position;
     }
 
-    private void CreateAsteroid()
+    protected virtual T CreatePrefab()
     {
         var position = GetSpawnPosition() + _target.position;
-        var asteroid = Instantiate(_asteroidPrefab, position, Quaternion.identity);
-        asteroid.Init(_target.position - asteroid.transform.position, false);
+        var obj = Instantiate(_prefab, position, Quaternion.identity);
+        return obj;
     }
 }

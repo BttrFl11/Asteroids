@@ -23,12 +23,16 @@ public class Ship : MonoBehaviour
         inputHandler.OnRotate += Movement.Rotate;
 
         _gameStateController = stateController;
+
+        Movement.OnEnable();
     }
 
     private void OnDisable()
     {
         _inputHandler.OnMove -= Movement.MoveForward;
         _inputHandler.OnRotate -= Movement.Rotate;
+
+        Movement.OnDisable();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

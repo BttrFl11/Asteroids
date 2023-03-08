@@ -20,6 +20,16 @@ public class ShipMovement
         _moveSpeed = data.MoveSpeed;
     }
 
+    public void OnEnable()
+    {
+        Fuel.OnEnable();
+    }
+
+    public void OnDisable()
+    {
+        Fuel.OnDisable();
+    }
+
     public virtual void MoveForward()
     {
         if (!CanMove) return;
@@ -45,10 +55,21 @@ public class ShipFuel
     private float _fuel;
     private float _expendRate;
 
+    private float Fuel
+    {
+        get => _fuel;
+        set
+        {
+            _fuel = value;
+            _fuel = Mathf.Clamp(_fuel, 0, _maxFuel);
+            OnFuelChanged?.Invoke(_fuel, _maxFuel);
+        }
+    }
+
     public bool Empty => _fuel <= 0;
 
     /// <summary>
-    /// param1 - current fuel, param2 - max fuel value
+    /// arg1 - current fuel, arg2 - max fuel value
     /// </summary>
     public event Action<float, float> OnFuelChanged;
 
@@ -59,12 +80,23 @@ public class ShipFuel
         _expendRate = data.ExpendRate;
     }
 
+    public void OnEnable()
+    {
+        Enemy.OnEnemyDied += RestoreFuel;
+    }
+
+    public void OnDisable()
+    {
+        Enemy.OnEnemyDied -= RestoreFuel;
+    }
+
     public void Expend()
     {
-        _fuel -= _expendRate * Time.deltaTime;
-        if (_fuel < 0)
-            _fuel = 0;
+        Fuel -= _expendRate * Time.deltaTime;
+    }
 
-        OnFuelChanged?.Invoke(_fuel, _maxFuel);
+    public void RestoreFuel(float amount)
+    {
+        Fuel += amount;
     }
 }
